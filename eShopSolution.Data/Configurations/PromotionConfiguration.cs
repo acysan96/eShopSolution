@@ -2,20 +2,21 @@
 using System.Collections.Generic;
 using System.Text;
 using eShopSolution.Data.Entities;
-using eShopSolution.Data.Enums;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace eShopSolution.Data.Configurations
 {
-    class CategoryConfiguration : IEntityTypeConfiguration<Category>
+    class PromotionConfiguration : IEntityTypeConfiguration<Promotion>
     {
-        public void Configure(EntityTypeBuilder<Category> builder)
+        public void Configure(EntityTypeBuilder<Promotion> builder)
         {
-            builder.ToTable("Categories");
+            builder.ToTable("Promotions");
+
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id).UseIdentityColumn();
-            builder.Property(x => x.Status).HasDefaultValue(Status.Active);
+
+            builder.Property(x => x.Name).IsRequired();
         }
     }
 }
